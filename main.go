@@ -2,10 +2,19 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/pixelbender/go-matroska/matroska"
 )
 
 func main() {
-	var t = []byte{0}
-	var request = APIRequest{BadRequest, t}
-	fmt.Printf("%d", request.Type)
+
+	var doc, err = matroska.Decode("filePath")
+
+	if err == nil {
+		return
+	}
+
+	var a = doc.EBML.Version
+
+	fmt.Println(a)
 }
